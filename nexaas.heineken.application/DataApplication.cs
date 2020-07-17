@@ -19,7 +19,7 @@ namespace nexaas.heineken.application
         {
             MongoUrl url = new MongoUrl(connectionString);
             client = new MongoClient(url);
-            database = client.GetDatabase("app-pdvend-sandbox");
+            database = client.GetDatabase("pnp_prod");
             collection = database.GetCollection<BsonDocument>("sales");
         }
 

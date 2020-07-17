@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nexaas.heineken.console", "nexaas.heineken.console\nexaas.heineken.console.csproj", "{2982EC75-E0D4-4506-AA4D-A2F770B5D8EE}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nexaas.heineken.model", "nexaas.heineken.model\nexaas.heineken.model.csproj", "{6589D68E-1012-410A-B302-CDB4EA8F971B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nexaas.heineken.form", "nexaas.heineken.form\nexaas.heineken.form.csproj", "{67355400-59BC-40CB-B0D5-246A20D5CCD1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nexaas.heineken.form", "nexaas.heineken.form\nexaas.heineken.form.csproj", "{67355400-59BC-40CB-B0D5-246A20D5CCD1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nexaas.heineken.application", "nexaas.heineken.application\nexaas.heineken.application.csproj", "{4CD99B25-DF34-4BB0-B669-406F089FF2A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "nexaas.heineken.application", "nexaas.heineken.application\nexaas.heineken.application.csproj", "{4CD99B25-DF34-4BB0-B669-406F089FF2A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2982EC75-E0D4-4506-AA4D-A2F770B5D8EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2982EC75-E0D4-4506-AA4D-A2F770B5D8EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2982EC75-E0D4-4506-AA4D-A2F770B5D8EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2982EC75-E0D4-4506-AA4D-A2F770B5D8EE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6589D68E-1012-410A-B302-CDB4EA8F971B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6589D68E-1012-410A-B302-CDB4EA8F971B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6589D68E-1012-410A-B302-CDB4EA8F971B}.Release|Any CPU.ActiveCfg = Release|Any CPU

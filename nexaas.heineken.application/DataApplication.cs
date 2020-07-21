@@ -15,11 +15,11 @@ namespace nexaas.heineken.application
         private readonly IMongoDatabase database;
         private readonly IMongoCollection<BsonDocument> collection;
 
-        public DataApplication(string connectionString)
+        public DataApplication(string connectionString, string dbname)
         {
             MongoUrl url = new MongoUrl(connectionString);
             client = new MongoClient(url);
-            database = client.GetDatabase("pnp_prod");
+            database = client.GetDatabase(dbname);
             collection = database.GetCollection<BsonDocument>("sales");
         }
 
@@ -190,8 +190,6 @@ namespace nexaas.heineken.application
                         listToFile.Add(new SAFX202(itemSale, cartItem, estabelecimento));
                     }
                 }
-
-
             }
 
             return listToFile;

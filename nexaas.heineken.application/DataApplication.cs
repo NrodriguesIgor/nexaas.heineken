@@ -150,7 +150,7 @@ namespace nexaas.heineken.application
 
         public IList<SAFX202> SAFX202()
         {
-            var pipeline = new[] { new BsonDocument() {
+            var pipeline = new[] {new BsonDocument(){ {"$match", new BsonDocument() { { "company_uuid","9d94ff3c-4480-45c3-b1f7-d2da47813f77"} } } }, new BsonDocument() {
                 {"$lookup",
                     new BsonDocument(){
                         {"from","companies"},
@@ -165,7 +165,6 @@ namespace nexaas.heineken.application
                             {"customer.name" , 1},
                             {"customer.identification.cnpj" , 1},
                             {"document.qrcode_url" , 1},
-                            {"document.xml" , 1},
                             {"payments" , 1},
                             {"company" , 1},
                             {"cart_items" , 1}

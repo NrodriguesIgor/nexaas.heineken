@@ -25,7 +25,7 @@ namespace nexaas.heineken.application
 
         public IList<SAFX201> SAFX201()
         {
-            var pipeline = new[] { new BsonDocument() {
+            var pipeline = new[] {new BsonDocument(){ {"$match", new BsonDocument() { { "company_uuid","9d94ff3c-4480-45c3-b1f7-d2da47813f77"} } } }, new BsonDocument() {
                 {"$lookup",
                     new BsonDocument(){
                         {"from","companies"},

@@ -22,8 +22,11 @@ namespace nexaas.heineken.model.XMLModels
 
         [XmlElement("total")]
         public Total Total { get; set; }
+
         public Transp Transp { get; set; }
+        
         public Pag Pag { get; set; }
+        
         public InfRespTec InfRespTec { get; set; }
     }
 }

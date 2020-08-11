@@ -6,6 +6,8 @@ namespace nexaas.heineken.model.XMLModels
     {
         [XmlElement(ElementName = "infNFe")]
         public InfNFe InfNFe { get; set; }
+
+        [XmlElement(ElementName = "infNFeSupl")]
         public InfNFeSupl InfNFeSupl { get; set; }
     }
 
@@ -13,9 +15,12 @@ namespace nexaas.heineken.model.XMLModels
     [XmlRoot(ElementName = "nfeProc", Namespace = "http://www.portalfiscal.inf.br/nfe")]
     public class NfeProc
     {
-        [XmlElement("NFe", Namespace = "http://www.portalfiscal.inf.br/nfe")]
+        [XmlElement("NFe")]
         public NFe NFe { get; set; }
-        
+
+        [XmlElement("protNFe")]
+        public ProtNFe ProtNFe { get; set; }
+
         [XmlAttribute("versao")]
         public string versao { get; set; }
     }

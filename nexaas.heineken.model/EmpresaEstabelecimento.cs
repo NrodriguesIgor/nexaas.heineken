@@ -68,6 +68,12 @@ namespace nexaas.heineken.model
                     COD_EMPRESA = "K00",
                     COD_ESTAB = "K070",
                     CNPJ = "05254957002040"
+                },
+                new EmpresaEstabelecimento
+                {
+                    COD_EMPRESA = "K00",
+                    COD_ESTAB = "K070",
+                    CNPJ = "08723218000186"
                 }
             };
         }

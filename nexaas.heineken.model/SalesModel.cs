@@ -1,5 +1,4 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
-using nexaas.heineken.model.CFEModels;
 using nexaas.heineken.model.XMLModels;
 using System;
 using System.Collections.Generic;
@@ -115,7 +114,7 @@ namespace nexaas.heineken.model
         public string status { get; set; }
         public string xml { get; set; }
         public NfeProc NFe { get; set; }
-        public CFe CFe { get; set; }
+        public CFeModels.CFe CFe { get; set; }
 
         public void DealXml()
         {
@@ -123,7 +122,7 @@ namespace nexaas.heineken.model
             {
                 NFeSerialization serializable = new NFeSerialization();
                 this.NFe= serializable.GetObjectFromFile<NfeProc>(xml);
-                this.CFe = serializable.GetObjectFromFile<CFe>(xml);
+                this.CFe = serializable.GetObjectFromFile<CFeModels.CFe>(xml);
             }
         }
     }

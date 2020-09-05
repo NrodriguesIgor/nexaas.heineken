@@ -3,6 +3,7 @@ using nexaas.heineken.application;
 using nexaas.heineken.model.Layouts;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Configuration;
 using System.IO;
 using System.Linq;
@@ -66,7 +67,7 @@ namespace nexaas.heineken.form
                 }
                 else
                 {
-                    string filename = $@"{status.Text}\safx201_{DateTime.Now:yyyyMMdd}.txt";
+                    string filename = $@"{status.Text}\safx201_{dtFim.Value:yyyyMMdd}.txt";
 
                     if (!File.Exists(filename))
                     {
@@ -74,7 +75,7 @@ namespace nexaas.heineken.form
                         {
                             StringBuilder sb = new StringBuilder();
 
-                            
+
                             foreach (var item in listToFile)
                             {
                                 sb.Append(item.COD_EMPRESA?.PadLeft(3, ' ') + "\t");
@@ -121,7 +122,7 @@ namespace nexaas.heineken.form
                     }
                     else
                     {
-                        string filename = $@"{status.Text}\safx202_{DateTime.Now:yyyyMMdd}.txt";
+                        string filename = $@"{status.Text}\safx202_{dtFim.Value:yyyyMMdd}.txt";
                         if (!File.Exists(filename))
                         {
                             try
@@ -290,7 +291,7 @@ namespace nexaas.heineken.form
                             }
                         }
                     }
-                } 
+                }
                 else // Gerar arquivo csv
                 {
                     try
@@ -304,7 +305,7 @@ namespace nexaas.heineken.form
                         }
                         else
                         {
-                            string filename = $@"{status.Text}\202_Relat_fiscal_{DateTime.Now:yyyymmdd}.csv";
+                            string filename = $@"{status.Text}\202_Relat_fiscal_{dtFim.Value:yyyymmdd}.csv";
                             if (!File.Exists(filename))
                             {
                                 try
@@ -312,7 +313,7 @@ namespace nexaas.heineken.form
                                     IList<string> headers = new List<string>
                                     {
                                         "CNPJ Emissor", "Empresa", "Status", "Modelo","Numero do Equipamento SAT",
-                                        "Numero", "Serie", "Numero da NFS-e", "Chave de acesso","Protocolo",
+                                        "Numero", "Serie", "Chave de acesso","Protocolo",
                                         "Data de emissao", "CPF/CNPJ do destinatario","Destinatario",
                                         "Municipio Prestador", "Natureza de Operacao", "Retorno do orgao autorizador",
                                         "Valor do documento", "CFOP", "DESCRICAO CFOP", "codigo produto",
@@ -325,19 +326,19 @@ namespace nexaas.heineken.form
                                         "Valor Base COFINS (Aliquota)", "aliq cofins","COFINS",
                                         "cst pis", "Quantidade - Base de Calculo PIS - (Pauta)",
                                         "Aliquota PIS (em Reais) - (Pauta)", "Valor Base PIS (Aliquota)",
-                                        "aliq pis", "PIS/PASEP", "CONTA CONTABIL", "ISS Normal",
-                                        "ISS Retido", "Forma de Pagamento"
+                                        "aliq pis", "PIS/PASEP", "CONTA CONTABIL", "Forma de Pagamento"
                                     };
 
                                     StringBuilder sb = new StringBuilder();
 
                                     int count = 0;
-                                    foreach(string head in headers)
+                                    foreach (string head in headers)
                                     {
                                         if (count == headers.Count - 1)
                                         {
                                             sb.Append(head);
-                                        } else
+                                        }
+                                        else
                                         {
                                             sb.Append($"{head}{delimiter}");
                                         }
@@ -363,8 +364,6 @@ namespace nexaas.heineken.form
                                         sb.Append(resultItem.Numero);
                                         sb.Append(delimiter);
                                         sb.Append(resultItem.Serie);
-                                        sb.Append(delimiter);
-                                        sb.Append(resultItem.NumeroNFSe);
                                         sb.Append(delimiter);
                                         sb.Append(resultItem.ChaveAcesso);
                                         sb.Append(delimiter);
@@ -444,10 +443,6 @@ namespace nexaas.heineken.form
                                         sb.Append(delimiter);
                                         sb.Append(resultItem.CONTACONTABIL);
                                         sb.Append(delimiter);
-                                        sb.Append(resultItem.ISSNormal);
-                                        sb.Append(delimiter);
-                                        sb.Append(resultItem.ISSRetido);
-                                        sb.Append(delimiter);
                                         sb.Append(resultItem.FormaPagamento);
                                         sb.Append(Environment.NewLine);
                                     }//);
@@ -496,7 +491,7 @@ namespace nexaas.heineken.form
         {
             string data = ((ComboBox)sender).SelectedItem as string;
 
-            switch (data) 
+            switch (data)
             {
                 case "Produção":
                     AmbienteSelecionado = ConfigurationManager.AppSettings["producao"];
@@ -539,5 +534,12 @@ namespace nexaas.heineken.form
                 _ => "txt",
             };
         }
+
+
+        private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e) { }
+
+        private void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e) { }
+
+        private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) { }
     }
 }

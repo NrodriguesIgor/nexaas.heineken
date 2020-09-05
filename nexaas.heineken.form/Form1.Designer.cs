@@ -243,6 +243,7 @@ namespace nexaas.heineken.form
         private System.Windows.Forms.DateTimePicker dtFim;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.ComponentModel.BackgroundWorker backgroundWorker;
     }
 }
 

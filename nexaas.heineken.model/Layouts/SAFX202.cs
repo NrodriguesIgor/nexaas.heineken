@@ -1,5 +1,4 @@
-﻿using nexaas.heineken.model.CFEModels;
-using nexaas.heineken.model.XMLModels;
+﻿using nexaas.heineken.model.XMLModels;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -356,14 +355,15 @@ namespace nexaas.heineken.model.Layouts
                 }
                 else
                 {
-                    IList<CFeInfCFeDet> detProdList = sale.document.CFe?.infCFe?.det;
+                    IList<CFeModels.det> detProdList = sale.document.CFe?.infCFe?.det;
                     var ide = sale.document.CFe?.infCFe?.ide;
 
                     if (detProdList != null && detProdList.Any())
                     {
-                        foreach (CFeInfCFeDet detProd in detProdList)
+                        foreach (CFeModels.det detProd in detProdList)
                         {
-                            if (detProd.prod.cProd.ToString().PadLeft(18, '0') == cartItem.sellable.code)
+                            var prod = detProd.prod.cProd.ToString().PadLeft(18, '0');
+                            if (prod == cartItem.sellable.code)
                             {
                                 SAFX202 model = new SAFX202
                                 {
@@ -373,8 +373,8 @@ namespace nexaas.heineken.model.Layouts
                                     NUM_CUPOM = sale.document.number.ToString(),
                                     DATA_EMISSAO = sale.activated_at.Value.ToString("yyyyMMdd"),
                                     NUM_ITEM = detProd.nItem.ToString(),
-                                    IND_PRODUTO = "1",
-                                    COD_PRODUTO = detProd.prod.cProd.ToString(),
+                                    IND_PRODUTO = "5",
+                                    COD_PRODUTO = detProd.prod.cProd.TrimStart('0'),
                                     COD_SERVICO = "@",
                                     COD_CFO = detProd.prod.CFOP.ToString(),
                                     COD_CONTA = "021101026",
@@ -394,7 +394,7 @@ namespace nexaas.heineken.model.Layouts
                                 {
                                     model.COD_SITUACAO_A = detProd.imposto.ICMS.ICMS00.Orig.ToString().RemoveSpecialCharacters();
                                     model.COD_SITUACAO_B = detProd.imposto.ICMS.ICMS00.CST.ToString().RemoveSpecialCharacters();
-                                    model.VLR_BASE_ICMS = (double.Parse(model.VLR_ITEM) * double.Parse(model.QTDE)).ToString();
+                                    model.VLR_BASE_ICMS = (double.Parse(model.VLR_UNIT) * double.Parse(model.QTDE)).ToString();
                                     model.VLR_ICMS = detProd.imposto.ICMS.ICMS00.vICMS.ToString().RemoveDots().RemoveSpecialCharacters();
                                     model.VLR_ALIQ_ICMS = detProd.imposto.ICMS.ICMS00.pICMS.ToString().RemoveDots().RemoveSpecialCharacters();
                                 }
@@ -432,7 +432,7 @@ namespace nexaas.heineken.model.Layouts
                                     model.COD_SIT_TRIB_PIS = detProd.imposto.PIS.PISNT.CST.ToString().RemoveSpecialCharacters();
                                     model.QTD_BASE_PIS = "0";
                                     model.VLR_ALIQ_PIS_R = "0";
-                                    model.VLR_BASE_PIS = "0";
+                                    model.VLR_BASE_PIS = (double.Parse(model.VLR_UNIT) * double.Parse(model.QTDE)).ToString();
                                     model.VLR_PIS = "0";
                                     model.VLR_ALIQ_PIS = "0";
                                 }
@@ -462,7 +462,7 @@ namespace nexaas.heineken.model.Layouts
                                     model.COD_SIT_TRIB_COFINS = detProd.imposto.COFINS.COFINSNT.CST.ToString().RemoveDots().RemoveSpecialCharacters();
                                     model.QTD_BASE_COFINS = "0";
                                     model.VLR_ALIQ_COFINS_R = "0";
-                                    model.VLR_BASE_COFINS = "0";
+                                    model.VLR_BASE_COFINS = (double.Parse(model.VLR_UNIT) * double.Parse(model.QTDE)).ToString();
                                     model.VLR_COFINS = "0";
                                     model.VLR_ALIQ_COFINS = "0";
                                 }
@@ -490,6 +490,22 @@ namespace nexaas.heineken.model.Layouts
                                 {
                                     model.COD_SIT_TRIB_PIS = "49";
                                     model.COD_SIT_TRIB_COFINS = "49";
+
+                                    model.VLR_BASE_ICMS = "0";
+                                    model.VLR_ICMS = "0";
+                                    model.VLR_ALIQ_ICMS = "0";
+
+                                    model.VLR_ALIQ_PIS_R = "0";
+                                    model.VLR_BASE_PIS = "0";
+                                    model.VLR_PIS = "0";
+                                    model.VLR_ALIQ_PIS = "0";
+
+
+                                    model.QTD_BASE_COFINS = "0";
+                                    model.VLR_ALIQ_COFINS_R = "0";
+                                    model.VLR_BASE_COFINS = "0";
+                                    model.VLR_COFINS = "0";
+                                    model.VLR_ALIQ_COFINS = "0";
                                 }
 
                                 result.Add(model);
@@ -686,14 +702,13 @@ namespace nexaas.heineken.model.Layouts
                                     ChaveAcesso = nota.infCFe.Id;
                                     Protocolo = "";
 
-                                    if (nota.infCFe.ide.dEmi > 0)
-                                    {
-                                        string ano = nota.infCFe.ide.dEmi.ToString().Substring(0, 4);
-                                        string mes = nota.infCFe.ide.dEmi.ToString().Substring(ano.Length, 2);
-                                        string dia = nota.infCFe.ide.dEmi.ToString().Substring((ano.Length + mes.Length), 2);
 
-                                        DataEmissao = DateTime.Parse($"{ano}-{mes}-{dia}");
-                                    }
+                                    string ano = nota.infCFe.ide.dEmi.ToString().Substring(0, 4);
+                                    string mes = nota.infCFe.ide.dEmi.ToString().Substring(ano.Length, 2);
+                                    string dia = nota.infCFe.ide.dEmi.ToString().Substring((ano.Length + mes.Length), 2);
+
+                                    DataEmissao = DateTime.Parse($"{ano}-{mes}-{dia}");
+
 
                                     CPFCNPJDestinatario = "";
                                     Destinatario = "";
@@ -850,7 +865,7 @@ namespace nexaas.heineken.model.Layouts
                 }
                 else
                 {
-                    IList<CFeInfCFeDet> detProdList = sale.document.CFe?.infCFe?.det;
+                    IList<CFeModels.det> detProdList = sale.document.CFe?.infCFe?.det;
 
                     if (detProdList != null && detProdList.Any())
                     {
@@ -858,23 +873,26 @@ namespace nexaas.heineken.model.Layouts
                         var ide = sale.document.CFe?.infCFe.ide;
                         var info = sale.document.CFe?.infCFe;
 
-                        foreach (CFeInfCFeDet detProd in detProdList)
+                        foreach (CFeModels.det detProd in detProdList)
                         {
-                            if (detProd.prod.cProd.ToString().PadLeft(18, '0') == cartItem.sellable.code)
+                            var prod = detProd.prod.cProd.ToString().PadLeft(18, '0');
+                            if (prod == cartItem.sellable.code)
                             {
-                                SAFX202Csv model = new SAFX202Csv();
-                                model.COD_EMPRESA = estabelecimento.COD_EMPRESA;
-                                model.CNPJEmissor = emitente.CNPJ.ToString();
-                                model.Empresa = emitente.xNome;
-                                model.Status = sale.document.status; // Traduzir
-                                model.Modelo = ide.mod.ToString();
-                                model.NumeroEquipamentoSAT = ide.nserieSAT.ToString();
-                                model.Numero = ide.nCFe.ToString(); //detProd.nItem.ToString();
-                                model.Serie = "";
-                                model.NumeroNFSe = "";
-                                model.ChaveAcesso = sale.document.CFe?.infCFe.Id;
-                                model.Protocolo = "";
-                                model.DataEmissao = sale.activated_at.Value;
+                                SAFX202Csv model = new SAFX202Csv
+                                {
+                                    COD_EMPRESA = estabelecimento.COD_EMPRESA,
+                                    CNPJEmissor = emitente.CNPJ.ToString(),
+                                    Empresa = emitente.xNome,
+                                    Status = sale.document.status,
+                                    Modelo = ide.mod.ToString(),
+                                    NumeroEquipamentoSAT = ide.nserieSAT.ToString(),
+                                    Numero = ide.nCFe.ToString(),
+                                    Serie = "",
+                                    NumeroNFSe = "",
+                                    ChaveAcesso = sale.document.CFe?.infCFe.Id,
+                                    Protocolo = "",
+                                    DataEmissao = sale.activated_at.Value
+                                };
 
                                 if (model.ChaveAcesso.Contains("CFe"))
                                 {
@@ -887,25 +905,28 @@ namespace nexaas.heineken.model.Layouts
                                 model.MunicipioPrestador = "";
                                 model.NaturezaOperacao = "";
                                 model.RetornoOrgaoAutorizador = "";
-                                model.ValorDocumento = sale.document.CFe.infCFe.total.vCFe.ToString();
+                                model.ValorDocumento = sale.document.CFe.infCFe.total.vCFe.Replace('.', ',');
                                 model.CFOP = detProd.prod.CFOP.ToString();
                                 model.DESCRICAOCFOP = "";
-                                model.CodigoProduto = detProd.prod.cProd.ToString();
+                                model.CodigoProduto = detProd.prod.cProd.TrimStart('0');
                                 model.DescrcaoProduto = detProd.prod.xProd;
                                 model.NCM = detProd.prod.NCM.ToString().RemoveSpecialCharacters();
                                 model.UNIDADEMEDIDA = "0";
-                                model.ValorUnitarioProduto = detProd.prod.vUnCom.ToString();
+                                model.ValorUnitarioProduto = detProd.prod.vUnCom.Replace('.', ',');
                                 model.DescontoProduto = cartItem.discount;
-                                model.ValorProdutoDepoisDesconto = (double.Parse(model.ValorUnitarioProduto) - model.DescontoProduto).ToString();
+
+                                decimal vl = decimal.Parse(model.ValorUnitarioProduto.Replace('.', ','));
+                                decimal desconto = vl - model.DescontoProduto;
+                                model.ValorProdutoDepoisDesconto = desconto.ToString("F");
                                 model.Quantidade = cartItem.quantity?.Split(".")[0].ToString();
-                                model.VrTotalProduto = detProd.prod.vProd.ToString();
+                                model.VrTotalProduto = detProd.prod.vProd.Replace('.', ',');
 
                                 if (detProd.imposto.ICMS != null &&
                                     detProd.imposto.ICMS.ICMS00 != null)
                                 {
-                                    model.ValorICMS = detProd.imposto.ICMS.ICMS00.vICMS.ToString();
-                                    model.ValorALIQICMS = detProd.imposto.ICMS.ICMS00.pICMS.ToString().Split(",")[0];
-                                    model.BCICMS = (double.Parse(model.VrTotalProduto) * double.Parse(model.Quantidade)).ToString();
+                                    model.ValorICMS = detProd.imposto.ICMS.ICMS00.vICMS.Replace('.', ',');
+                                    model.ValorALIQICMS = detProd.imposto.ICMS.ICMS00.pICMS.Split(".")[0];
+                                    model.BCICMS = (decimal.Parse(model.ValorUnitarioProduto.Replace('.', ',')) * decimal.Parse(model.Quantidade)).ToString();
                                 }
                                 else if (detProd.imposto.ICMS != null &&
                                     detProd.imposto.ICMS.ICMS40 != null)
@@ -928,16 +949,18 @@ namespace nexaas.heineken.model.Layouts
                                 if (detProd.imposto.COFINS != null &&
                                     detProd.imposto.COFINS.COFINSAliq != null)
                                 {
-                                    model.CstCofins = detProd.imposto?.COFINS?.COFINSAliq?.CST.ToString();
-                                    model.ValorBaseCOFINSAliquota = detProd.imposto?.COFINS?.COFINSAliq?.vBC.ToString();
-                                    model.AliqCofins = (detProd.imposto?.COFINS?.COFINSAliq?.pCOFINS * 100).ToString();
-                                    model.COFINS = detProd.imposto?.COFINS?.COFINSAliq?.vCOFINS.ToString();
+                                    model.CstCofins = detProd.imposto?.COFINS?.COFINSAliq?.CST.Replace('.', ',');
+                                    model.ValorBaseCOFINSAliquota = detProd.imposto?.COFINS?.COFINSAliq?.vBC.Replace('.', ',');
+
+                                    decimal al = decimal.Parse(detProd.imposto?.COFINS?.COFINSAliq?.pCOFINS.Replace('.', ','));
+                                    model.AliqCofins = (al * 100).ToString();
+                                    model.COFINS = detProd.imposto?.COFINS?.COFINSAliq?.vCOFINS.Replace('.', ',');
                                 }
                                 else if (detProd.imposto.COFINS != null &&
                                     detProd.imposto.COFINS.COFINSNT != null)
                                 {
-                                    model.CstCofins = detProd.imposto?.COFINS?.COFINSNT?.CST.ToString();
-                                    model.ValorBaseCOFINSAliquota = "0";
+                                    model.CstCofins = detProd.imposto?.COFINS?.COFINSNT?.CST.Replace('.', ',');
+                                    model.ValorBaseCOFINSAliquota = (decimal.Parse(model.ValorUnitarioProduto.Replace('.', ',')) * decimal.Parse(model.Quantidade)).ToString();
                                     model.AliqCofins = "0";
                                     model.COFINS = "0";
                                 }
@@ -955,21 +978,22 @@ namespace nexaas.heineken.model.Layouts
                                 if (detProd.imposto.PIS != null &&
                                     detProd.imposto.PIS.PISAliq != null)
                                 {
-                                    model.CstPis = detProd.imposto.PIS.PISAliq.CST.ToString();
+                                    model.CstPis = detProd.imposto.PIS.PISAliq.CST.Replace('.', ',');
 
                                     model.QuantidadeBaseCalculoPISPauta = "0";
                                     model.AliquotaPISReaisPauta = "0";
-                                    model.ValorBasePISAliquota = detProd.imposto.PIS.PISAliq.vBC.ToString();
-                                    model.AliqPis = (detProd.imposto.PIS.PISAliq.pPIS * 100).ToString();
-                                    model.PISPASEP = detProd.imposto.PIS.PISAliq.vPIS.ToString();
+                                    model.ValorBasePISAliquota = detProd.imposto.PIS.PISAliq.vBC.Replace('.', ',');
+
+                                    model.AliqPis = (decimal.Parse(detProd.imposto.PIS.PISAliq.pPIS.Replace('.', ',')) * 100).ToString();
+                                    model.PISPASEP = detProd.imposto.PIS.PISAliq.vPIS.Replace('.', ',');
                                 }
                                 else if (detProd.imposto.PIS != null &&
                                     detProd.imposto.PIS.PISNT != null)
                                 {
-                                    model.CstPis = detProd.imposto.PIS.PISNT.CST.ToString();
+                                    model.CstPis = detProd.imposto.PIS.PISNT.CST.Replace('.', ',');
                                     model.QuantidadeBaseCalculoPISPauta = "0";
                                     model.AliquotaPISReaisPauta = "0";
-                                    model.ValorBasePISAliquota = "0";
+                                    model.ValorBasePISAliquota = (decimal.Parse(model.ValorUnitarioProduto.Replace('.', ',')) * decimal.Parse(model.Quantidade)).ToString();
                                     model.AliqPis = "0";
                                     model.PISPASEP = "0";
                                 }
@@ -987,9 +1011,29 @@ namespace nexaas.heineken.model.Layouts
                                 model.ISSNormal = "0";
                                 model.ISSRetido = "0";
 
+                                if (sale.document.status.Equals("cancelled"))
+                                {
+                                    //model.CstPis = "49";
+                                    //model.CstCofins = "49";
+
+                                    model.BCICMS = "0";
+                                    model.ValorICMS = "0";
+                                    model.ValorALIQICMS = "0";
+
+                                    model.ValorBaseCOFINSAliquota = "0";
+                                    model.AliqCofins = "0";
+                                    model.COFINS = "0";
+
+                                    model.QuantidadeBaseCalculoPISPauta = "0";
+                                    model.AliquotaPISReaisPauta = "0";
+                                    model.ValorBasePISAliquota = "0";
+                                    model.AliqPis = "0";
+                                    model.PISPASEP = "0";
+                                }
+
                                 var pagamento = sale.payments.FirstOrDefault();
                                 if (pagamento != null)
-                                    model.FormaPagamento = pagamento.type;
+                                    model.FormaPagamento = PaymentType(pagamento.type);
 
                                 result.Add(model);
                             }
@@ -1000,6 +1044,29 @@ namespace nexaas.heineken.model.Layouts
 
             return result;
         }
+
+        private string PaymentType(string type)
+        {
+            string result = "";
+
+            switch (type)
+            {
+                case "money": 
+                    result = "dinheiro";
+                    break;
+                case "credit_card":
+                    result = "cartão de credito";
+                    break;
+                case "debit_card":
+                    result = "cartão de débito";
+                    break;
+                default:
+                    result = "";
+                    break;
+            };
+
+            return result;
+    }
 
 
         public string COD_EMPRESA { get; set; }

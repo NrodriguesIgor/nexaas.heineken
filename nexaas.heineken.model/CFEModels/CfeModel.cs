@@ -1,1851 +1,451 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace nexaas.heineken.model.CFEModels
+namespace nexaas.heineken.model.CFeModels
 {
-
-    // NOTE: Generated code may require at least .NET Framework 4.5 or .NET Core/Standard 2.0.
-    /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-    public partial class CFe
+    public class CFe
     {
+        [XmlElement(ElementName = "infCFe")]
+        public infCFe infCFe { get; set; }
 
-        private CFeInfCFe infCFeField;
-
-        private Signature signatureField;
-
-        /// <remarks/>
-        public CFeInfCFe infCFe
-        {
-            get
-            {
-                return this.infCFeField;
-            }
-            set
-            {
-                this.infCFeField = value;
-            }
-        }
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Namespace = "http://www.w3.org/2000/09/xmldsig#")]
-        public Signature Signature
-        {
-            get
-            {
-                return this.signatureField;
-            }
-            set
-            {
-                this.signatureField = value;
-            }
-        }
+        //[XmlElement(ElementName = "Signature")]
+        //public Signature Signature { get; set; }
     }
 
-    /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class CFeInfCFe
+    public class infCFe
     {
+        [XmlAttribute("Id")]
+        public string Id { get; set; }
 
-        private CFeInfCFeIde ideField;
+        [XmlAttribute("versao")]
+        public string versao { get; set; }
 
-        private CFeInfCFeEmit emitField;
+        [XmlAttribute("versaoDadosEnt")]
+        public string versaoDadosEnt { get; set; }
 
-        private object destField;
+        [XmlAttribute("versaoSB")]
+        public string versaoSB { get; set; }
 
-        //private CFeInfCFeDet detField;
+        [XmlElement(ElementName = "ide")]
+        public ide ide { get; set; }
 
-        private CFeInfCFeTotal totalField;
+        [XmlElement(ElementName = "emit")]
+        public emit emit { get; set; }
 
-        private CFeInfCFePgto pgtoField;
+        [XmlElement(ElementName = "dest")]
+        public dest dest { get; set; }
 
-        private CFeInfCFeInfAdic infAdicField;
+        [XmlElement(ElementName = "det")]
+        public List<det> det { get; set; }
 
-        private string idField;
+        [XmlElement(ElementName = "total")]
+        public total total { get; set; }
 
-        private decimal versaoField;
+        [XmlElement(ElementName = "pgto")]
+        public pgto pgto { get; set; }
 
-        private decimal versaoDadosEntField;
-
-        private ushort versaoSBField;
-
-        /// <remarks/>
-        public CFeInfCFeIde ide
-        {
-            get
-            {
-                return this.ideField;
-            }
-            set
-            {
-                this.ideField = value;
-            }
-        }
-
-        /// <remarks/>
-        public CFeInfCFeEmit emit
-        {
-            get
-            {
-                return this.emitField;
-            }
-            set
-            {
-                this.emitField = value;
-            }
-        }
-
-        /// <remarks/>
-        public object dest
-        {
-            get
-            {
-                return this.destField;
-            }
-            set
-            {
-                this.destField = value;
-            }
-        }
-
-        ///// <remarks/>
-        //public CFeInfCFeDet det
-        //{
-        //    get
-        //    {
-        //        return this.detField;
-        //    }
-        //    set
-        //    {
-        //        this.detField = value;
-        //    }
-        //}
-
-        [XmlElement("det")]
-        public List<CFeInfCFeDet> det { get; set; }
-
-
-        /// <remarks/>
-        public CFeInfCFeTotal total
-        {
-            get
-            {
-                return this.totalField;
-            }
-            set
-            {
-                this.totalField = value;
-            }
-        }
-
-        /// <remarks/>
-        public CFeInfCFePgto pgto
-        {
-            get
-            {
-                return this.pgtoField;
-            }
-            set
-            {
-                this.pgtoField = value;
-            }
-        }
-
-        /// <remarks/>
-        public CFeInfCFeInfAdic infAdic
-        {
-            get
-            {
-                return this.infAdicField;
-            }
-            set
-            {
-                this.infAdicField = value;
-            }
-        }
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Id
-        {
-            get
-            {
-                return this.idField;
-            }
-            set
-            {
-                this.idField = value;
-            }
-        }
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal versao
-        {
-            get
-            {
-                return this.versaoField;
-            }
-            set
-            {
-                this.versaoField = value;
-            }
-        }
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public decimal versaoDadosEnt
-        {
-            get
-            {
-                return this.versaoDadosEntField;
-            }
-            set
-            {
-                this.versaoDadosEntField = value;
-            }
-        }
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public ushort versaoSB
-        {
-            get
-            {
-                return this.versaoSBField;
-            }
-            set
-            {
-                this.versaoSBField = value;
-            }
-        }
+        [XmlElement(ElementName = "infAdic")]
+        public infAdic infAdic { get; set; }
     }
 
-    /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class CFeInfCFeIde
+    public class total
     {
+        [XmlElement(ElementName = "ICMSTot")]
+        public ICMSTot ICMSTot { get; set; }
 
-        private byte cUFField;
+        [XmlElement(ElementName = "vCFe")]
+        public string vCFe { get; set; }
 
-        private uint cNFField;
-
-        private byte modField;
-
-        private uint nserieSATField;
-
-        private byte nCFeField;
-
-        private uint dEmiField;
-
-        private uint hEmiField;
-
-        private byte cDVField;
-
-        private byte tpAmbField;
-
-        private ulong cNPJField;
-
-        private string signACField;
-
-        private string assinaturaQRCODEField;
-
-        private ushort numeroCaixaField;
-
-        /// <remarks/>
-        public byte cUF
-        {
-            get
-            {
-                return this.cUFField;
-            }
-            set
-            {
-                this.cUFField = value;
-            }
-        }
-
-        /// <remarks/>
-        public uint cNF
-        {
-            get
-            {
-                return this.cNFField;
-            }
-            set
-            {
-                this.cNFField = value;
-            }
-        }
-
-        /// <remarks/>
-        public byte mod
-        {
-            get
-            {
-                return this.modField;
-            }
-            set
-            {
-                this.modField = value;
-            }
-        }
-
-        /// <remarks/>
-        public uint nserieSAT
-        {
-            get
-            {
-                return this.nserieSATField;
-            }
-            set
-            {
-                this.nserieSATField = value;
-            }
-        }
-
-        /// <remarks/>
-        public byte nCFe
-        {
-            get
-            {
-                return this.nCFeField;
-            }
-            set
-            {
-                this.nCFeField = value;
-            }
-        }
-
-        /// <remarks/>
-        public uint dEmi
-        {
-            get
-            {
-                return this.dEmiField;
-            }
-            set
-            {
-                this.dEmiField = value;
-            }
-        }
-
-        /// <remarks/>
-        public uint hEmi
-        {
-            get
-            {
-                return this.hEmiField;
-            }
-            set
-            {
-                this.hEmiField = value;
-            }
-        }
-
-        /// <remarks/>
-        public byte cDV
-        {
-            get
-            {
-                return this.cDVField;
-            }
-            set
-            {
-                this.cDVField = value;
-            }
-        }
-
-        /// <remarks/>
-        public byte tpAmb
-        {
-            get
-            {
-                return this.tpAmbField;
-            }
-            set
-            {
-                this.tpAmbField = value;
-            }
-        }
-
-        /// <remarks/>
-        public ulong CNPJ
-        {
-            get
-            {
-                return this.cNPJField;
-            }
-            set
-            {
-                this.cNPJField = value;
-            }
-        }
-
-        /// <remarks/>
-        public string signAC
-        {
-            get
-            {
-                return this.signACField;
-            }
-            set
-            {
-                this.signACField = value;
-            }
-        }
-
-        /// <remarks/>
-        public string assinaturaQRCODE
-        {
-            get
-            {
-                return this.assinaturaQRCODEField;
-            }
-            set
-            {
-                this.assinaturaQRCODEField = value;
-            }
-        }
-
-        /// <remarks/>
-        public ushort numeroCaixa
-        {
-            get
-            {
-                return this.numeroCaixaField;
-            }
-            set
-            {
-                this.numeroCaixaField = value;
-            }
-        }
+        [XmlElement(ElementName = "vCFeLei12741")]
+        public string vCFeLei12741 { get; set; }
     }
 
-    /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class CFeInfCFeEmit
+    public class ICMSTot
     {
+        [XmlElement(ElementName = "vICMS")]
+        public string vICMS { get; set; }
 
-        private ulong cNPJField;
+        [XmlElement(ElementName = "vProd")]
+        public string vProd { get; set; }
 
-        private string xNomeField;
+        [XmlElement(ElementName = "vDesc")]
+        public string vDesc { get; set; }
 
-        private string xFantField;
+        [XmlElement(ElementName = "vPIS")]
+        public string vPIS { get; set; }
 
-        private CFeInfCFeEmitEnderEmit enderEmitField;
+        [XmlElement(ElementName = "vCOFINS")]
+        public string vCOFINS { get; set; }
 
-        private ulong ieField;
+        [XmlElement(ElementName = "vPISST")]
+        public string vPISST { get; set; }
 
-        private byte cRegTribField;
+        [XmlElement(ElementName = "vCOFINSST")]
+        public string vCOFINSST { get; set; }
 
-        private byte cRegTribISSQNField;
-
-        private string indRatISSQNField;
-
-        /// <remarks/>
-        public ulong CNPJ
-        {
-            get
-            {
-                return this.cNPJField;
-            }
-            set
-            {
-                this.cNPJField = value;
-            }
-        }
-
-        /// <remarks/>
-        public string xNome
-        {
-            get
-            {
-                return this.xNomeField;
-            }
-            set
-            {
-                this.xNomeField = value;
-            }
-        }
-
-        /// <remarks/>
-        public string xFant
-        {
-            get
-            {
-                return this.xFantField;
-            }
-            set
-            {
-                this.xFantField = value;
-            }
-        }
-
-        /// <remarks/>
-        public CFeInfCFeEmitEnderEmit enderEmit
-        {
-            get
-            {
-                return this.enderEmitField;
-            }
-            set
-            {
-                this.enderEmitField = value;
-            }
-        }
-
-        /// <remarks/>
-        public ulong IE
-        {
-            get
-            {
-                return this.ieField;
-            }
-            set
-            {
-                this.ieField = value;
-            }
-        }
-
-        /// <remarks/>
-        public byte cRegTrib
-        {
-            get
-            {
-                return this.cRegTribField;
-            }
-            set
-            {
-                this.cRegTribField = value;
-            }
-        }
-
-        /// <remarks/>
-        public byte cRegTribISSQN
-        {
-            get
-            {
-                return this.cRegTribISSQNField;
-            }
-            set
-            {
-                this.cRegTribISSQNField = value;
-            }
-        }
-
-        /// <remarks/>
-        public string indRatISSQN
-        {
-            get
-            {
-                return this.indRatISSQNField;
-            }
-            set
-            {
-                this.indRatISSQNField = value;
-            }
-        }
+        [XmlElement(ElementName = "vOutro")]
+        public string vOutro { get; set; }
     }
 
-    /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class CFeInfCFeEmitEnderEmit
+    public class pgto
     {
+        [XmlElement(ElementName = "MP")]
+        public MP MP { get; set; }
 
-        private string xLgrField;
-
-        private byte nroField;
-
-        private string xBairroField;
-
-        private string xMunField;
-
-        private uint cEPField;
-
-        /// <remarks/>
-        public string xLgr
-        {
-            get
-            {
-                return this.xLgrField;
-            }
-            set
-            {
-                this.xLgrField = value;
-            }
-        }
-
-        /// <remarks/>
-        public byte nro
-        {
-            get
-            {
-                return this.nroField;
-            }
-            set
-            {
-                this.nroField = value;
-            }
-        }
-
-        /// <remarks/>
-        public string xBairro
-        {
-            get
-            {
-                return this.xBairroField;
-            }
-            set
-            {
-                this.xBairroField = value;
-            }
-        }
-
-        /// <remarks/>
-        public string xMun
-        {
-            get
-            {
-                return this.xMunField;
-            }
-            set
-            {
-                this.xMunField = value;
-            }
-        }
-
-        /// <remarks/>
-        public uint CEP
-        {
-            get
-            {
-                return this.cEPField;
-            }
-            set
-            {
-                this.cEPField = value;
-            }
-        }
+        [XmlElement(ElementName = "vTroco")]
+        public string vTroco { get; set; }
     }
 
-    /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class CFeInfCFeDet
+    public class MP
     {
+        [XmlElement(ElementName = "cMP")]
+        public string cMP { get; set; }
 
-        private CFeInfCFeDetProd prodField;
-
-        private CFeInfCFeDetImposto impostoField;
-
-        private byte nItemField;
-
-        /// <remarks/>
-        public CFeInfCFeDetProd prod
-        {
-            get
-            {
-                return this.prodField;
-            }
-            set
-            {
-                this.prodField = value;
-            }
-        }
-
-        /// <remarks/>
-        public CFeInfCFeDetImposto imposto
-        {
-            get
-            {
-                return this.impostoField;
-            }
-            set
-            {
-                this.impostoField = value;
-            }
-        }
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public byte nItem
-        {
-            get
-            {
-                return this.nItemField;
-            }
-            set
-            {
-                this.nItemField = value;
-            }
-        }
+        [XmlElement(ElementName = "vMP")]
+        public string vMP { get; set; }
     }
 
-    /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class CFeInfCFeDetProd
+    public class ide
     {
+        [XmlElement(ElementName = "cUF")]
+        public string cUF { get; set; }
 
-        private uint cProdField;
+        [XmlElement(ElementName = "cNF")]
+        public string cNF { get; set; }
 
-        private string xProdField;
+        [XmlElement(ElementName = "mod")]
+        public string mod { get; set; }
 
-        private uint nCMField;
+        [XmlElement(ElementName = "nserieSAT")]
+        public string nserieSAT { get; set; }
 
-        private ushort cFOPField;
+        [XmlElement(ElementName = "nCFe")]
+        public string nCFe { get; set; }
 
-        private string uComField;
+        [XmlElement(ElementName = "dEmi")]
+        public string dEmi { get; set; }
 
-        private decimal qComField;
+        [XmlElement(ElementName = "hEmi")]
+        public string hEmi { get; set; }
 
-        private decimal vUnComField;
+        [XmlElement(ElementName = "cDV")]
+        public string cDV { get; set; }
 
-        private decimal vProdField;
+        [XmlElement(ElementName = "tpAmb")]
+        public string tpAmb { get; set; }
 
-        private string indRegraField;
+        [XmlElement(ElementName = "CNPJ")]
+        public string CNPJ { get; set; }
 
-        private decimal vItemField;
+        [XmlElement(ElementName = "signAC")]
+        public string signAC { get; set; }
 
-        /// <remarks/>
-        public uint cProd
-        {
-            get
-            {
-                return this.cProdField;
-            }
-            set
-            {
-                this.cProdField = value;
-            }
-        }
+        [XmlElement(ElementName = "assinaturaQRCODE")]
+        public string assinaturaQRCODE { get; set; }
 
-        /// <remarks/>
-        public string xProd
-        {
-            get
-            {
-                return this.xProdField;
-            }
-            set
-            {
-                this.xProdField = value;
-            }
-        }
-
-        /// <remarks/>
-        public uint NCM
-        {
-            get
-            {
-                return this.nCMField;
-            }
-            set
-            {
-                this.nCMField = value;
-            }
-        }
-
-        /// <remarks/>
-        public ushort CFOP
-        {
-            get
-            {
-                return this.cFOPField;
-            }
-            set
-            {
-                this.cFOPField = value;
-            }
-        }
-
-        /// <remarks/>
-        public string uCom
-        {
-            get
-            {
-                return this.uComField;
-            }
-            set
-            {
-                this.uComField = value;
-            }
-        }
-
-        /// <remarks/>
-        public decimal qCom
-        {
-            get
-            {
-                return this.qComField;
-            }
-            set
-            {
-                this.qComField = value;
-            }
-        }
-
-        /// <remarks/>
-        public decimal vUnCom
-        {
-            get
-            {
-                return this.vUnComField;
-            }
-            set
-            {
-                this.vUnComField = value;
-            }
-        }
-
-        /// <remarks/>
-        public decimal vProd
-        {
-            get
-            {
-                return this.vProdField;
-            }
-            set
-            {
-                this.vProdField = value;
-            }
-        }
-
-        /// <remarks/>
-        public string indRegra
-        {
-            get
-            {
-                return this.indRegraField;
-            }
-            set
-            {
-                this.indRegraField = value;
-            }
-        }
-
-        /// <remarks/>
-        public decimal vItem
-        {
-            get
-            {
-                return this.vItemField;
-            }
-            set
-            {
-                this.vItemField = value;
-            }
-        }
+        [XmlElement(ElementName = "numeroCaixa")]
+        public string numeroCaixa { get; set; }
     }
 
-    /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class CFeInfCFeDetImposto
+    public class det
     {
+        [XmlAttribute("nItem")]
+        public string nItem { get; set; }
 
-        private CFeInfCFeDetImpostoICMS iCMSField;
+        [XmlElement(ElementName = "prod")]
+        public prod prod { get; set; }
 
-        private CFeInfCFeDetImpostoPIS pISField;
-
-        private CFeInfCFeDetImpostoCOFINS cOFINSField;
-
-        /// <remarks/>
-        public CFeInfCFeDetImpostoICMS ICMS
-        {
-            get
-            {
-                return this.iCMSField;
-            }
-            set
-            {
-                this.iCMSField = value;
-            }
-        }
-
-        /// <remarks/>
-        public CFeInfCFeDetImpostoPIS PIS
-        {
-            get
-            {
-                return this.pISField;
-            }
-            set
-            {
-                this.pISField = value;
-            }
-        }
-
-        /// <remarks/>
-        public CFeInfCFeDetImpostoCOFINS COFINS
-        {
-            get
-            {
-                return this.cOFINSField;
-            }
-            set
-            {
-                this.cOFINSField = value;
-            }
-        }
+        [XmlElement(ElementName = "imposto")]
+        public imposto imposto { get; set; }
     }
 
-    /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class CFeInfCFeDetImpostoICMS
+    public class prod
     {
+        [XmlElement(ElementName = "cProd")]
+        public string cProd { get; set; }
 
-        private CFeInfCFeDetImpostoICMSICMS00 iCMS00Field;
+        [XmlElement(ElementName = "xProd")]
+        public string xProd { get; set; }
 
-        /// <remarks/>
-        public CFeInfCFeDetImpostoICMSICMS00 ICMS00
-        {
-            get
-            {
-                return this.iCMS00Field;
-            }
-            set
-            {
-                this.iCMS00Field = value;
-            }
-        }
+        [XmlElement(ElementName = "NCM")]
+        public string NCM { get; set; }
 
-        public CFeInfCFeDetImpostoICMSICMS40 ICMS40 { get; set; }
+        [XmlElement(ElementName = "CFOP")]
+        public string CFOP { get; set; }
+
+        [XmlElement(ElementName = "uCom")]
+        public string uCom { get; set; }
+
+        [XmlElement(ElementName = "qCom")]
+        public string qCom { get; set; }
+
+        [XmlElement(ElementName = "vUnCom")]
+        public string vUnCom { get; set; }
+
+        [XmlElement(ElementName = "vProd")]
+        public string vProd { get; set; }
+
+        [XmlElement(ElementName = "indRegra")]
+        public string indRegra { get; set; }
+
+        [XmlElement(ElementName = "vItem")]
+        public string vItem { get; set; }
     }
 
-    /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class CFeInfCFeDetImpostoICMSICMS00
+    public class imposto
     {
+        [XmlElement(ElementName = "vItem12741")]
+        public string vItem12741 { get; set; }
 
-        private byte origField;
+        [XmlElement(ElementName = "ICMS")]
+        public ICMS ICMS { get; set; }
 
-        private byte cSTField;
+        [XmlElement(ElementName = "PIS")]
+        public PIS PIS { get; set; }
 
-        private decimal pICMSField;
-
-        private decimal vICMSField;
-
-        /// <remarks/>
-        public byte Orig
-        {
-            get
-            {
-                return this.origField;
-            }
-            set
-            {
-                this.origField = value;
-            }
-        }
-
-        /// <remarks/>
-        public byte CST
-        {
-            get
-            {
-                return this.cSTField;
-            }
-            set
-            {
-                this.cSTField = value;
-            }
-        }
-
-        /// <remarks/>
-        public decimal pICMS
-        {
-            get
-            {
-                return this.pICMSField;
-            }
-            set
-            {
-                this.pICMSField = value;
-            }
-        }
-
-        /// <remarks/>
-        public decimal vICMS
-        {
-            get
-            {
-                return this.vICMSField;
-            }
-            set
-            {
-                this.vICMSField = value;
-            }
-        }
+        [XmlElement(ElementName = "COFINS")]
+        public COFINS COFINS { get; set; }
     }
 
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class CFeInfCFeDetImpostoICMSICMS40
+    public class ICMS
     {
-        public byte Orig { get; set; }
+        [XmlElement(ElementName = "ICMS00")]
+        public ICMS00 ICMS00 { get; set; }
 
-        public byte CST { get; set; }
+        [XmlElement(ElementName = "ICMS40")]
+        public ICMS40 ICMS40 { get; set; }
     }
 
-    /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class CFeInfCFeDetImpostoPIS
+    public class ICMS00
     {
+        [XmlElement(ElementName = "Orig")]
+        public string Orig { get; set; }
 
-        private CFeInfCFeDetImpostoPISPISAliq pISAliqField;
+        [XmlElement(ElementName = "CST")]
+        public string CST { get; set; }
 
-        /// <remarks/>
-        public CFeInfCFeDetImpostoPISPISAliq PISAliq
-        {
-            get
-            {
-                return this.pISAliqField;
-            }
-            set
-            {
-                this.pISAliqField = value;
-            }
-        }
+        [XmlElement(ElementName = "pICMS")]
+        public string pICMS { get; set; }
 
-        public CFeInfCFeDetImpostoPISPISNT PISNT { get; set; }
+        [XmlElement(ElementName = "vICMS")]
+        public string vICMS { get; set; }
     }
 
-    /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class CFeInfCFeDetImpostoPISPISAliq
+    public class ICMS40
     {
+        [XmlElement(ElementName = "Orig")]
+        public string Orig { get; set; }
 
-        private byte cSTField;
-
-        private decimal vBCField;
-
-        private decimal pPISField;
-
-        private decimal vPISField;
-
-        /// <remarks/>
-        public byte CST
-        {
-            get
-            {
-                return this.cSTField;
-            }
-            set
-            {
-                this.cSTField = value;
-            }
-        }
-
-        /// <remarks/>
-        public decimal vBC
-        {
-            get
-            {
-                return this.vBCField;
-            }
-            set
-            {
-                this.vBCField = value;
-            }
-        }
-
-        /// <remarks/>
-        public decimal pPIS
-        {
-            get
-            {
-                return this.pPISField;
-            }
-            set
-            {
-                this.pPISField = value;
-            }
-        }
-
-        /// <remarks/>
-        public decimal vPIS
-        {
-            get
-            {
-                return this.vPISField;
-            }
-            set
-            {
-                this.vPISField = value;
-            }
-        }
-    }
-
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class CFeInfCFeDetImpostoPISPISNT
-    {
+        [XmlElement(ElementName = "CST")]
         public string CST { get; set; }
     }
 
-    /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class CFeInfCFeDetImpostoCOFINS
+    public class PIS
     {
+        [XmlElement(ElementName = "PISAliq")]
+        public PISAliq PISAliq { get; set; }
 
-        private CFeInfCFeDetImpostoCOFINSCOFINSAliq cOFINSAliqField;
-
-        /// <remarks/>
-        public CFeInfCFeDetImpostoCOFINSCOFINSAliq COFINSAliq
-        {
-            get
-            {
-                return this.cOFINSAliqField;
-            }
-            set
-            {
-                this.cOFINSAliqField = value;
-            }
-        }
-
-        public CFeInfCFeDetImpostoCOFINSCOFINSNT COFINSNT { get; set; }
+        [XmlElement(ElementName = "PISNT")]
+        public PISNT PISNT { get; set; }
     }
 
-    /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class CFeInfCFeDetImpostoCOFINSCOFINSAliq
+    public class PISAliq
     {
+        [XmlElement(ElementName = "CST")]
+        public string CST { get; set; }
 
-        private byte cSTField;
+        [XmlElement(ElementName = "vBC")]
+        public string vBC { get; set; }
 
-        private decimal vBCField;
+        [XmlElement(ElementName = "pPIS")]
+        public string pPIS { get; set; }
 
-        private decimal pCOFINSField;
-
-        private decimal vCOFINSField;
-
-        /// <remarks/>
-        public byte CST
-        {
-            get
-            {
-                return this.cSTField;
-            }
-            set
-            {
-                this.cSTField = value;
-            }
-        }
-
-        /// <remarks/>
-        public decimal vBC
-        {
-            get
-            {
-                return this.vBCField;
-            }
-            set
-            {
-                this.vBCField = value;
-            }
-        }
-
-        /// <remarks/>
-        public decimal pCOFINS
-        {
-            get
-            {
-                return this.pCOFINSField;
-            }
-            set
-            {
-                this.pCOFINSField = value;
-            }
-        }
-
-        /// <remarks/>
-        public decimal vCOFINS
-        {
-            get
-            {
-                return this.vCOFINSField;
-            }
-            set
-            {
-                this.vCOFINSField = value;
-            }
-        }
+        [XmlElement(ElementName = "vPIS")]
+        public string vPIS { get; set; }
     }
 
-    public partial class CFeInfCFeDetImpostoCOFINSCOFINSNT
+    public class PISNT
     {
+        [XmlElement(ElementName = "CST")]
         public string CST { get; set; }
     }
 
-    /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class CFeInfCFeTotal
+    public class COFINS
     {
+        [XmlElement(ElementName = "COFINSAliq")]
+        public COFINSAliq COFINSAliq { get; set; }
 
-        private CFeInfCFeTotalICMSTot iCMSTotField;
-
-        private decimal vCFeField;
-
-        private decimal vCFeLei12741Field;
-
-        /// <remarks/>
-        public CFeInfCFeTotalICMSTot ICMSTot
-        {
-            get
-            {
-                return this.iCMSTotField;
-            }
-            set
-            {
-                this.iCMSTotField = value;
-            }
-        }
-
-        /// <remarks/>
-        public decimal vCFe
-        {
-            get
-            {
-                return this.vCFeField;
-            }
-            set
-            {
-                this.vCFeField = value;
-            }
-        }
-
-        /// <remarks/>
-        public decimal vCFeLei12741
-        {
-            get
-            {
-                return this.vCFeLei12741Field;
-            }
-            set
-            {
-                this.vCFeLei12741Field = value;
-            }
-        }
+        [XmlElement(ElementName = "COFINSNT")]
+        public COFINSNT COFINSNT { get; set; }
     }
 
-    /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class CFeInfCFeTotalICMSTot
+    public class COFINSAliq
     {
+        [XmlElement(ElementName = "CST")]
+        public string CST { get; set; }
 
-        private decimal vICMSField;
+        [XmlElement(ElementName = "vBC")]
+        public string vBC { get; set; }
 
-        private decimal vProdField;
+        [XmlElement(ElementName = "pCOFINS")]
+        public string pCOFINS { get; set; }
 
-        private decimal vDescField;
-
-        private decimal vPISField;
-
-        private decimal vCOFINSField;
-
-        private decimal vPISSTField;
-
-        private decimal vCOFINSSTField;
-
-        private decimal vOutroField;
-
-        /// <remarks/>
-        public decimal vICMS
-        {
-            get
-            {
-                return this.vICMSField;
-            }
-            set
-            {
-                this.vICMSField = value;
-            }
-        }
-
-        /// <remarks/>
-        public decimal vProd
-        {
-            get
-            {
-                return this.vProdField;
-            }
-            set
-            {
-                this.vProdField = value;
-            }
-        }
-
-        /// <remarks/>
-        public decimal vDesc
-        {
-            get
-            {
-                return this.vDescField;
-            }
-            set
-            {
-                this.vDescField = value;
-            }
-        }
-
-        /// <remarks/>
-        public decimal vPIS
-        {
-            get
-            {
-                return this.vPISField;
-            }
-            set
-            {
-                this.vPISField = value;
-            }
-        }
-
-        /// <remarks/>
-        public decimal vCOFINS
-        {
-            get
-            {
-                return this.vCOFINSField;
-            }
-            set
-            {
-                this.vCOFINSField = value;
-            }
-        }
-
-        /// <remarks/>
-        public decimal vPISST
-        {
-            get
-            {
-                return this.vPISSTField;
-            }
-            set
-            {
-                this.vPISSTField = value;
-            }
-        }
-
-        /// <remarks/>
-        public decimal vCOFINSST
-        {
-            get
-            {
-                return this.vCOFINSSTField;
-            }
-            set
-            {
-                this.vCOFINSSTField = value;
-            }
-        }
-
-        /// <remarks/>
-        public decimal vOutro
-        {
-            get
-            {
-                return this.vOutroField;
-            }
-            set
-            {
-                this.vOutroField = value;
-            }
-        }
+        [XmlElement(ElementName = "vCOFINS")]
+        public string vCOFINS { get; set; }
     }
 
-    /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class CFeInfCFePgto
+    public class COFINSNT
     {
-
-        private CFeInfCFePgtoMP mpField;
-
-        private decimal vTrocoField;
-
-        /// <remarks/>
-        public CFeInfCFePgtoMP MP
-        {
-            get
-            {
-                return this.mpField;
-            }
-            set
-            {
-                this.mpField = value;
-            }
-        }
-
-        /// <remarks/>
-        public decimal vTroco
-        {
-            get
-            {
-                return this.vTrocoField;
-            }
-            set
-            {
-                this.vTrocoField = value;
-            }
-        }
+        [XmlElement(ElementName = "CST")]
+        public string CST { get; set; }
     }
 
-    /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class CFeInfCFePgtoMP
+
+    public class emit
     {
+        [XmlElement(ElementName = "CNPJ")]
+        public string CNPJ { get; set; }
 
-        private byte cMPField;
+        [XmlElement(ElementName = "xNome")]
+        public string xNome { get; set; }
 
-        private decimal vMPField;
+        [XmlElement(ElementName = "xFant")]
+        public string xFant { get; set; }
 
-        /// <remarks/>
-        public byte cMP
-        {
-            get
-            {
-                return this.cMPField;
-            }
-            set
-            {
-                this.cMPField = value;
-            }
-        }
+        [XmlElement(ElementName = "enderEmit")]
+        public enderEmit enderEmit { get; set; }
 
-        /// <remarks/>
-        public decimal vMP
-        {
-            get
-            {
-                return this.vMPField;
-            }
-            set
-            {
-                this.vMPField = value;
-            }
-        }
+        [XmlElement(ElementName = "IE")]
+        public string IE { get; set; }
+
+        [XmlElement(ElementName = "cRegTrib")]
+        public string cRegTrib { get; set; }
+
+        [XmlElement(ElementName = "cRegTribISSQN")]
+        public string cRegTribISSQN { get; set; }
+
+        [XmlElement(ElementName = "indRatISSQN")]
+        public string indRatISSQN { get; set; }
     }
 
-    /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class CFeInfCFeInfAdic
+    public class enderEmit
     {
+        [XmlElement(ElementName = "xLgr")]
+        public string xLgr { get; set; }
 
-        private CFeInfCFeInfAdicObsFisco obsFiscoField;
+        [XmlElement(ElementName = "nro")]
+        public string nro { get; set; }
 
-        /// <remarks/>
-        public CFeInfCFeInfAdicObsFisco obsFisco
-        {
-            get
-            {
-                return this.obsFiscoField;
-            }
-            set
-            {
-                this.obsFiscoField = value;
-            }
-        }
+        [XmlElement(ElementName = "xBairro")]
+        public string xBairro { get; set; }
+
+        [XmlElement(ElementName = "xMun")]
+        public string xMun { get; set; }
+
+        [XmlElement(ElementName = "CEP")]
+        public string CEP { get; set; }
     }
 
-    /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class CFeInfCFeInfAdicObsFisco
+    public class dest { }
+
+
+    public class infAdic
     {
+        [XmlElement(ElementName = "infCpl")]
+        public string infCpl { get; set; }
 
-        private string xTextoField;
-
-        private string xCampoField;
-
-        /// <remarks/>
-        public string xTexto
-        {
-            get
-            {
-                return this.xTextoField;
-            }
-            set
-            {
-                this.xTextoField = value;
-            }
-        }
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string xCampo
-        {
-            get
-            {
-                return this.xCampoField;
-            }
-            set
-            {
-                this.xCampoField = value;
-            }
-        }
+        [XmlElement(ElementName = "obsFisco")]
+        public obsFisco obsFisco { get; set; }
     }
 
-    /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.w3.org/2000/09/xmldsig#")]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace = "http://www.w3.org/2000/09/xmldsig#", IsNullable = false)]
-    public partial class Signature
+    public class obsFisco
     {
-
-        private SignatureSignedInfo signedInfoField;
-
-        private string signatureValueField;
-
-        private SignatureKeyInfo keyInfoField;
-
-        /// <remarks/>
-        public SignatureSignedInfo SignedInfo
-        {
-            get
-            {
-                return this.signedInfoField;
-            }
-            set
-            {
-                this.signedInfoField = value;
-            }
-        }
-
-        /// <remarks/>
-        public string SignatureValue
-        {
-            get
-            {
-                return this.signatureValueField;
-            }
-            set
-            {
-                this.signatureValueField = value;
-            }
-        }
-
-        /// <remarks/>
-        public SignatureKeyInfo KeyInfo
-        {
-            get
-            {
-                return this.keyInfoField;
-            }
-            set
-            {
-                this.keyInfoField = value;
-            }
-        }
+        [XmlElement(ElementName = "xTexto")]
+        public string xTexto { get; set; }
     }
 
-    /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.w3.org/2000/09/xmldsig#")]
-    public partial class SignatureSignedInfo
+    public class Signature
     {
+        [XmlAttribute("xmlns")]
+        public string xmlns { get; set; }
 
-        private SignatureSignedInfoCanonicalizationMethod canonicalizationMethodField;
+        //[XmlElement(ElementName = "SignedInfo")]
+        //public SignedInfo SignedInfo { get; set; }
 
-        private SignatureSignedInfoSignatureMethod signatureMethodField;
+        [XmlElement(ElementName = "SignatureValue")]
+        public string SignatureValue { get; set; }
 
-        private SignatureSignedInfoReference referenceField;
-
-        /// <remarks/>
-        public SignatureSignedInfoCanonicalizationMethod CanonicalizationMethod
-        {
-            get
-            {
-                return this.canonicalizationMethodField;
-            }
-            set
-            {
-                this.canonicalizationMethodField = value;
-            }
-        }
-
-        /// <remarks/>
-        public SignatureSignedInfoSignatureMethod SignatureMethod
-        {
-            get
-            {
-                return this.signatureMethodField;
-            }
-            set
-            {
-                this.signatureMethodField = value;
-            }
-        }
-
-        /// <remarks/>
-        public SignatureSignedInfoReference Reference
-        {
-            get
-            {
-                return this.referenceField;
-            }
-            set
-            {
-                this.referenceField = value;
-            }
-        }
+        //[XmlElement(ElementName = "KeyInfo")]
+        //public KeyInfo KeyInfo { get; set; }
     }
 
-    /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.w3.org/2000/09/xmldsig#")]
-    public partial class SignatureSignedInfoCanonicalizationMethod
+    public class SignedInfo
     {
+        [XmlElement(ElementName = "CanonicalizationMethod")]
+        public CanonicalizationMethod CanonicalizationMethod { get; set; }
 
-        private string algorithmField;
+        [XmlElement(ElementName = "SignatureMethod")]
+        public SignatureMethod SignatureMethod { get; set; }
 
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Algorithm
-        {
-            get
-            {
-                return this.algorithmField;
-            }
-            set
-            {
-                this.algorithmField = value;
-            }
-        }
+        [XmlElement(ElementName = "Reference")]
+        public Reference Reference { get; set; }
     }
 
-    /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.w3.org/2000/09/xmldsig#")]
-    public partial class SignatureSignedInfoSignatureMethod
+    public class CanonicalizationMethod
     {
-
-        private string algorithmField;
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Algorithm
-        {
-            get
-            {
-                return this.algorithmField;
-            }
-            set
-            {
-                this.algorithmField = value;
-            }
-        }
+        [XmlAttribute("Algorithm")]
+        public string Algorithm { get; set; }
     }
 
-    /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.w3.org/2000/09/xmldsig#")]
-    public partial class SignatureSignedInfoReference
+    public class SignatureMethod
     {
-
-        private SignatureSignedInfoReferenceTransform[] transformsField;
-
-        private SignatureSignedInfoReferenceDigestMethod digestMethodField;
-
-        private string digestValueField;
-
-        private string uRIField;
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute("Transform", IsNullable = false)]
-        public SignatureSignedInfoReferenceTransform[] Transforms
-        {
-            get
-            {
-                return this.transformsField;
-            }
-            set
-            {
-                this.transformsField = value;
-            }
-        }
-
-        /// <remarks/>
-        public SignatureSignedInfoReferenceDigestMethod DigestMethod
-        {
-            get
-            {
-                return this.digestMethodField;
-            }
-            set
-            {
-                this.digestMethodField = value;
-            }
-        }
-
-        /// <remarks/>
-        public string DigestValue
-        {
-            get
-            {
-                return this.digestValueField;
-            }
-            set
-            {
-                this.digestValueField = value;
-            }
-        }
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string URI
-        {
-            get
-            {
-                return this.uRIField;
-            }
-            set
-            {
-                this.uRIField = value;
-            }
-        }
+        [XmlAttribute("Algorithm")]
+        public string Algorithm { get; set; }
     }
 
-    /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.w3.org/2000/09/xmldsig#")]
-    public partial class SignatureSignedInfoReferenceTransform
+    public class Reference
     {
+        [XmlAttribute("URI")]
+        public string URI { get; set; }
 
-        private string algorithmField;
+        [XmlElement(ElementName = "Transforms")]
+        public Transforms Transforms { get; set; }
 
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Algorithm
-        {
-            get
-            {
-                return this.algorithmField;
-            }
-            set
-            {
-                this.algorithmField = value;
-            }
-        }
+        [XmlElement(ElementName = "DigestMethod")]
+        public DigestMethod DigestMethod { get; set; }
+
+        [XmlElement(ElementName = "DigestValue")]
+        public string DigestValue { get; set; }
     }
 
-    /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.w3.org/2000/09/xmldsig#")]
-    public partial class SignatureSignedInfoReferenceDigestMethod
+    public class Transforms
     {
-
-        private string algorithmField;
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string Algorithm
-        {
-            get
-            {
-                return this.algorithmField;
-            }
-            set
-            {
-                this.algorithmField = value;
-            }
-        }
+        [XmlElement(ElementName = "Transform")]
+        public List<Transform> Transform { get; set; }
     }
 
-    /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.w3.org/2000/09/xmldsig#")]
-    public partial class SignatureKeyInfo
+    public class Transform
     {
-
-        private SignatureKeyInfoX509Data x509DataField;
-
-        /// <remarks/>
-        public SignatureKeyInfoX509Data X509Data
-        {
-            get
-            {
-                return this.x509DataField;
-            }
-            set
-            {
-                this.x509DataField = value;
-            }
-        }
+        [XmlAttribute("Algorithm")]
+        public string Algorithm { get; set; }
     }
 
-    /// <remarks/>
-    [System.SerializableAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true, Namespace = "http://www.w3.org/2000/09/xmldsig#")]
-    public partial class SignatureKeyInfoX509Data
+    public class DigestMethod
     {
-
-        private string x509CertificateField;
-
-        /// <remarks/>
-        public string X509Certificate
-        {
-            get
-            {
-                return this.x509CertificateField;
-            }
-            set
-            {
-                this.x509CertificateField = value;
-            }
-        }
+        [XmlAttribute("Algorithm")]
+        public string Algorithm { get; set; }
     }
 
+    public class KeyInfo
+    {
+        [XmlElement(ElementName = "X509Data")]
+        public X509Data X509Data { get; set; }
+    }
+
+    public class X509Data
+    {
+        [XmlElement(ElementName = "X509Certificate")]
+        public string X509Certificate { get; set; }
+    }
 
 }
